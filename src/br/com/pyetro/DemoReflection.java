@@ -1,15 +1,20 @@
 package br.com.pyetro;
 
+import java.lang.annotation.Annotation;
+
 public class DemoReflection {
     public static void main(String[] args) {
 
-        Class cName = NewClass.class;
+        Class aName = NewClass.class;
 
-        System.out.println(cName);
+        Annotation[] annotations = aName.getAnnotations();
 
-        NewClass c = new NewClass();
-        Class cName1 = c.getClass();
-        System.out.println(cName1);
+        for(Annotation annotation : annotations){
+            if(annotation instanceof Tabela){
+                Tabela tabela = (Tabela) annotation;
+                System.out.println("name: " + tabela.nome());
+            }
+        }
 
     }
 }
